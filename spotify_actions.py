@@ -291,23 +291,6 @@ def getVibes(user_token, tryAgain=False):
         if favorite_dance_track:
             fav_mood_tracks['dance'] = (favorite_dance_track.name, favorite_dance_track.artists[0]['name'], favorite_dance_track.imageURL)
 
-#    artistImageList.insert(0, profile_image)
-    if user['id'] == "sameer4":
-        fav_mood_tracks['hype'] = ('When To Say When', 'Drake', 'https://i.scdn.co/image/ab67616d0000b273bba7cfaf7c59ff0898acba1f')
-        fav_mood_tracks['sad'] = ("It Was A Very Good Year", "Frank Sinatra", "https://i.scdn.co/image/ab67616d0000b27371c86926f93afe990f1b00e3")        
-        fav_mood_tracks['happy'] = ("Social Cues", "Cage the Elephant", "https://i.scdn.co/image/ab67616d0000b27388883701231713b18429f80b")
-        fav_mood_tracks['angry'] = ("Cut You Off (To Grow Closer)", 'Kendrick Lamar', 'https://i.scdn.co/image/ab67616d0000b2739b035b031d9f0a6a75ae464e')
-        fav_mood_tracks['dance'] = ("Smooth Operator", 'Sade', 'https://i.scdn.co/image/ab67616d0000b2733980db35e4113b2cdf55ed12')
-        artistImageList[3] = 'https://i.scdn.co/image/bd1c6fdf3705cf9b7d0c8ac8e7bbed98e31a1559'
-        artistImageList[9] = 'https://i.scdn.co/image/a7cb9fc6df8b68fdb071156add87284c3c941a04'
-        artistImageList[8] = 'https://i.scdn.co/image/1b4858fbd24046a81cace5ee18d19c868262b91f'
-        artistImageList[4] = 'https://i.scdn.co/image/7db34c8aace6feb91f38601bb75e6b3301b4657a'
-#        artistImageList[5] = artistImageList[11]
-        artistImageList[6] = 'https://i.scdn.co/image/4912d27d6b01dd790313d8ef76586be6b100550f'
-        artistImageList[7] = 'https://i.scdn.co/image/b8aaf4b179bb0a52f29a810fdb0f9d5c16ec2c75'
-        artistImageList[5] = 'https://i.scdn.co/image/89bc3c14aa2b4f250033ffcf5f322b2a553d9331'
-
-
     songSets = [happySet, sadSet, hypeSet, chillSet, danceableSet, angrySet]
 
     randomTracks = getTracks(user_token, songSets)
