@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Vibes</title>
+    <link rel="icon" href="/static/icon.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bruh.css')}}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta id="party_id" data-name="{{party_id}}">
+    <!-- Web icons -->
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<style>
+    body {
+        background-image: url(/static/background.png);
+    }
+    ul#menu li {
+        display: inline;
+    }
+
+    .middle_text {
+        width: 33%;
+        float: right;
+    }
+
+    #scores {
+        text-align: center;
+        font-size: 65%;
+        margin-bottom: 20px;
+    }
+
+    .stats {
+        width: 33%;
+        float: left;
+        /*        background-color: #B34233; */
+        /* background-image: url(/static/background5.png); */
+        display: inline-block;
+    }
+
+    .stat_image {
+        /*        background-color: #B34233; */
+        padding-top: 40px;
+    }
+
+    .myVibes_image {
+        /*        background-color: #B34233; */
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    #member_list {
+        font-size: 50%;
+    }
+
+    #download {
+        margin: auto;
+        width: 200px;
+        padding: 10px;
+        display: block;
+        background-image: url(static/buttonBackground.png);
+/*        background-color: #751A33; */
+        color: #fff305;
+        border-radius: 20px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    #download2 {
+        margin: auto;
+        width: 200px;
+        padding: 10px;
+        display: block;
+        background-image: url(static/buttonBackground.png);
+/*        background-color: #751A33; */
+        color: #fff305;
+        border-radius: 20px;
+        margin-top: 20px;
+        cursor: pointer;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    #try_again {
+        margin: auto;
+        width: 200px;
+        padding: 10px;
+        display: block;
+        background-image: url(static/buttonBackground.png);
+/*        background-color: #751A33; */
+        color: #fff305;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+    #playlist_buttons {
+        font-family: Helvetica;
+        margin: auto;
+        width: 120px;
+        padding: 10px;
+        display: block;
+        background-image: url(static/buttonBackground.png);
+/*        background-color: #751A33; */
+        color: #fff305;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    h1 {
+        font-family: Khmer Mn, Palatino;
+        font-size: 105%;
+        color: #fff305;
+    }
+
+    .middle_text h1 {
+        margin: 0 auto;
+        margin-top: 0%;
+        margin-left: 10%;
+    }
+
+    #profile-pic {
+        height: 60px;
+        width: 60px;
+        border-radius: 20px;
+        margin-left: calc(0%);
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+
+    #artist-pic {
+        height: 60px;
+        width: 60px;
+        border-radius: 20px;
+        margin-top: 0px;
+        margin: -5px;
+    }
+
+    #album-cover {
+        height: 60px;
+        width: 60px;
+        border-radius: 10px;
+        margin-left: calc(0%);
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    #tracks {
+        font-size: 50%;
+        border-spacing: 1px;
+    }
+
+    table {
+        margin: 0 auto;
+        border: none;
+        border-collapse: separate;
+    }
+
+    td {
+        font-family: Khmer Mn, Palatino;
+        position: relative;
+        font-size: 187%;
+        font-weight: 400px;
+        color: #fff305;
+        border: none;
+        width: 20%;
+    }
+
+    #track-details {
+        width: 50%
+    }
+
+    #cover-art {
+        width: 15%
+    }
+
+    #song-list {
+        width: 30%;
+        font-weight: bold;
+    }
+
+    #my-vibes {
+        width: 50%;
+    }
+
+    .column {
+        float: left;
+        width: 50%;
+        padding: 0px;
+        margin-top: 10px;
+        margin-left: 0%;
+    }
+
+    /* Clearfix (clear floats) */
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    /* Container for flexboxes */
+    .row2 {
+        column-count: 2;
+        /* width: 50%; */
+        display: inline-flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        padding-top: 40px;
+    }
+
+    /* Create four equal columns */
+    .column2 {
+        flex: 33.3%;
+        padding: 20px;
+    }
+
+    .midSection {
+        width: 33%;
+        display: inline-block;
+        flex-wrap: wrap;
+        flex-direction: row;
+        padding-top: 55px;
+    }
+
+    @media screen and (max-width: 1023px) {
+        body {
+            background-image: url(/static/backgroundVertical.png);
+        }
+        .stats {
+            width: 100%;
+        }
+
+        .middle_text {
+            width: 100%;
+        }
+
+        .row2 {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            padding-top: 0%;
+        }
+
+        .midSection {
+            width: 100%;
+            padding-top: 10%;
+        }
+
+        .column2 {
+            padding: 10px;
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div id="middle">
+
+            <div class="stats">
+                <div class="stat_image">
+                    <ul>
+                        <table border="1">
+                            <tbody>
+                                <tr>
+                                    <td style="width:50%">
+                                        <h1 style="margin-bottom: 5%;">Vibeify</h1>
+                                    </td>
+                                    <td><img id="profile-pic" src="{{profileImage}}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ul>
+                    <td>
+                        <ul>
+                            <table id="artist_images" border='1'>
+                            </table>
+                        </ul>
+                    </td>
+                    <table border="1">
+                        <tr>
+                            <td style="width: 50%;">
+                                <ul id="scores">
+                                    <table id="member_list" border='1'>
+                                    </table>
+                                </ul>
+                            </td>
+
+                        </tr>
+                    </table>
+                    <td>
+                        <ul>
+                            <table id="artist_images2" border='1'>
+                            </table>
+                        </ul>
+                    </td>
+                    <a style="font-family:Khmer Mn, Palatino;color:#fff305;font-weight: bold;margin-bottom: 20px;">vibeify.me
+                    </a>
+                </div>
+                <button class="btn" id="download2">Download Image</button>
+            </div>
+
+            <div class="midSection">
+                <h1 style="margin-bottom: 5%; font-size: 200%;">Vibe Mixes</h1>
+                <div class="row2">
+                    <div class="column2">
+                        <button onclick="location.href='{{ url_for('vibePlaylist', vibe='happy') }}';" class="btn"
+                            id="playlist_buttons">
+                            <p><a style="color: #fff305;
+                        text-decoration: none;" href="{{ url_for('vibePlaylist', vibe='happy') }}">Happy &#128513;</a>
+                            </p>
+                        </button>
+                    </div>
+
+                    <div class="column2">
+                        <button onclick="location.href='{{ url_for('vibePlaylist', vibe='sad') }}';" class="btn"
+                            id="playlist_buttons">
+                            <p><a style="color: #fff305;
+                        text-decoration: none;" href="{{ url_for('vibePlaylist', vibe='sad') }}">Sad &#128532;</a></p>
+                        </button>
+                    </div>
+
+                    <div class="column2">
+                        <button onclick="location.href='{{ url_for('vibePlaylist', vibe='chill') }}';" class="btn"
+                            id="playlist_buttons">
+                            <p><a style="color: #fff305;
+                        text-decoration: none;" href="{{ url_for('vibePlaylist', vibe='chill') }}">Chill &#128526;</a>
+                            </p>
+                        </button>
+                    </div>
+
+                    <div class="column2">
+                        <button onclick="location.href='{{ url_for('vibePlaylist', vibe='hype') }}';" class="btn"
+                            id="playlist_buttons">
+                            <p><a style="color: #fff305;
+                        text-decoration: none;" href="{{ url_for('vibePlaylist', vibe='hype') }}">Hype &#128548;</a>
+                            </p>
+                        </button>
+                    </div>
+
+                    <div class="column2">
+                        <button onclick="location.href='{{ url_for('vibePlaylist', vibe='groovy') }}';" class="btn"
+                            id="playlist_buttons">
+                            <p><a style="color: #fff305;
+                        text-decoration: none;" href="{{ url_for('vibePlaylist', vibe='groovy') }}">Groovy
+                                    &#128527;</a></p>
+                        </button>
+                    </div>
+
+                    <div class="column2">
+                        <button onclick="location.href='{{ url_for('vibePlaylist', vibe='angry') }}';" class="btn"
+                            id="playlist_buttons">
+                            <p><a style="color: #fff305;
+                        text-decoration: none;" href="{{ url_for('vibePlaylist', vibe='angry') }}">Angry &#128545;</a>
+                            </p>
+                        </button>
+                    </div>
+
+                    <div class="column2">
+                        <button onclick="location.href='{{ url_for('vibePlaylist', vibe='study') }}';" class="btn"
+                            id="playlist_buttons">
+                            <p><a style="color: #fff305;
+                        text-decoration: none;" href="{{ url_for('vibePlaylist', vibe='study') }}">Study &#128218;</a>
+                            </p>
+                        </button>
+                    </div>
+
+                    <div class="column2">
+                        <button onclick="location.href='{{ url_for('vibePlaylist', vibe='workout') }}';" class="btn"
+                            id="playlist_buttons">
+                            <p><a style="color: #fff305;
+                        text-decoration: none;" href="{{ url_for('vibePlaylist', vibe='workout') }}">Workout
+                                    &#128170;</a></p>
+                        </button>
+                    </div>
+
+                    <div class="column2">
+                        <button onclick="location.href='{{ url_for('options') }}';" class="btn"
+                            id="playlist_buttons">
+                            <p><a style="color: #fff305;
+                        text-decoration: none;" href="{{ url_for('options') }}">Back</a>
+                            </p>
+                        </button>
+                    </div>
+
+                    <div class="column2">
+                        <button onclick="location.href='{{ url_for('home') }}';" class="btn"
+                            id="playlist_buttons">
+                            <p><a style="color: #fff305;
+                        text-decoration: none;" href="{{ url_for('home') }}">Log Out</a></p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="middle_text">
+                <div class="myVibes_image">
+                    <ul>
+                        <table border="1">
+                            <tbody>
+                                <tr>
+                                    <td style="width:50%">
+                                        <h1 style="margin-bottom: 5%;">My Vibes</h1>
+                                    </td>
+                                    <td><img id="profile-pic" src="{{profileImage}}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ul>
+                    <ul style="margin-bottom: 5%;">
+                        <table id="tracks" border='1'>
+                        </table>
+                    </ul>
+                    <a style="font-family:Khmer Mn, Palatino;color:#fff305;font-weight: bold;margin-bottom: 20px;">vibeify.me
+                    </a>
+                </div>
+                <button onclick="location.href='{{ url_for('tryAgain') }}';" style="width: 200px;" class="btn"
+                    id="playlist_buttons">Get New Songs</button>
+                <button class="btn" id="download">Download Image</button>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script type="text/javascript">
+
+        var str = '<ul>'
+        str += '<tr style="font-weight:bold;font-size:' + (35 + .70 * 100) + '%;"><td>'
+        str += ' I am...'
+        str += '</td></tr>'
+
+        obj = {{ vibeMoodList | safe }};
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                var val = obj[key];
+                str += ''
+                switch (key) {
+                    case "happyScore":
+                        str += '<tr style="font-size:' + (35 + Math.sqrt(val) * 100) + '%;"><td>'
+                        str += (val * 100).toFixed(0) + '%'
+                        str += ' Happy &#128513;'
+                        str += '</td></tr>'
+                        break;
+                    case "sadScore":
+                        str += '<tr style="font-size:' + (35 + Math.sqrt(val) * 100) + '%;"><td>'
+                        str += (val * 100).toFixed(0) + '%'
+                        str += ' Sadboi &#128532;'
+                        str += '</td></tr>'
+                        break;
+                    case "chillScore":
+                        str += '<tr style="font-size:' + (35 + Math.sqrt(val) * 100) + '%;"><td>'
+                        str += (val * 100).toFixed(0) + '%'
+                        str += ' Chill &#128526;'
+                        str += '</td></tr>'
+                        break;
+                    case "hypeScore":
+                        str += '<tr style="font-size:' + (35 + Math.sqrt(val) * 100) + '%;"><td>'
+                        str += (val * 100).toFixed(0) + '%'
+                        str += ' Hypebeast &#128548;'
+                        str += '</td></tr>'
+                        break;
+                    case "danceScore":
+                        str += '<tr style="font-size:' + (35 + Math.sqrt(val) * 100) + '%;"><td>'
+                        str += (val * 100).toFixed(0) + '%'
+                        str += ' Groovy &#128527;'
+                        str += '</td></tr>'
+                        break;
+                    case "angryScore":
+                        str += '<tr style="font-size:' + (35 + Math.sqrt(val) * 100) + '%;"><td>'
+                        str += (val * 100).toFixed(0) + '%'
+                        str += ' Angry &#128545;'
+                        str += '</td></tr>'
+                        break;
+                }
+
+            }
+        }
+
+        str += '</ul>';
+        document.getElementById("member_list").innerHTML = str;
+
+        var str3 = '<ul id="menu">'
+        obj3 = {{ artistImages | safe }};
+
+        for (var i = 0; i < obj3.length / 2; i++) {
+            str3 += '<li>'
+            str3 += '<img id="artist-pic" src="' + obj3[i] + '">'
+            str3 += '</li>'
+        }
+
+        str3 += '</ul>';
+        document.getElementById("artist_images").innerHTML = str3;
+
+        var str4 = '<ul id="menu">'
+
+        for (var i = 5; i < obj3.length; i++) {
+            str4 += '<li>'
+            str4 += '<img id="artist-pic" src="' + obj3[i] + '">'
+            str4 += '</li>'
+        }
+
+        str4 += '</ul>';
+        document.getElementById("artist_images2").innerHTML = str4;
+
+        tracks = {{ favorite_tracks | safe }}
+        str2 = '<ul>';
+        for (var key in tracks) {
+            if (tracks.hasOwnProperty(key)) {
+                var val = tracks[key];
+                str2 += ''
+                switch (key) {
+                    case "happy":
+                        str2 += '<tr><td id="song-list">Happy &#128513;</td>'
+                        str2 += '<td id="cover-art"><image id="album-cover" src="' + val[2] + '" /></td>'
+                        str2 += '<td id="track-details"><table style="font-size:50%;"><tbody><tr><td style="font-weight: bold;">' + val[0] + '</td></tr><tr><td>' + val[1] + '</td></tr></tbody></table></td>'
+                        str2 += '</tr>'
+                        break;
+                    case "sad":
+                        str2 += '<tr><td id="song-list">Sad &#128532;</td>'
+                        str2 += '<td id="cover-art"><image id="album-cover" src="' + val[2] + '" /></td>'
+                        str2 += '<td id="track-details"><table style="font-size:50%;"><tbody><tr><td style="font-weight: bold;">' + val[0] + '</td></tr><tr><td>' + val[1] + '</td></tr></tbody></table></td>'
+                        str2 += '</tr>'
+                        break;
+                    case "chill":
+                        str2 += '<tr><td id="song-list">Chill &#128526;</td>'
+                        str2 += '<td><image id="album-cover" src="' + val[2] + '" /></td>'
+                        str2 += '<td id="track-details"><table style="font-size:50%;"><tbody><tr><td style="font-weight: bold;">' + val[0] + '</td></tr><tr><td>' + val[1] + '</td></tr></tbody></table></td>'
+                        str2 += '</tr>'
+                        break;
+                    case "hype":
+                        str2 += '<tr><td id="song-list">Hype &#128548;</td>'
+                        str2 += '<td><image id="album-cover" src="' + val[2] + '" /></td>'
+                        str2 += '<td id="track-details"><table style="font-size:50%;"><tbody><tr><td style="font-weight: bold;">' + val[0] + '</td></tr><tr><td>' + val[1] + '</td></tr></tbody></table></td>'
+                        str2 += '</tr>'
+                        break;
+                    case "dance":
+                        str2 += '<tr><td id="song-list">Groovy &#128527;</td>'
+                        str2 += '<td><image id="album-cover" src="' + val[2] + '" /></td>'
+                        str2 += '<td id="track-details"><table style="font-size:50%;"><tbody><tr><td style="font-weight: bold;">' + val[0] + '</td></tr><tr><td>' + val[1] + '</td></tr></tbody></table></td>'
+                        str2 += '</tr>'
+                        break;
+                    case "angry":
+                        str2 += '<tr><td id="song-list">Angry &#128545;</td>'
+                        str2 += '<td><image id="album-cover" src="' + val[2] + '" /></td>'
+                        str2 += '<td id="track-details"><table style="font-size:50%;"><tbody><tr><td style="font-weight: bold;">' + val[0] + '</td></tr><tr><td>' + val[1] + '</td></tr></tbody></table></td>'
+                        str2 += '</tr>'
+                        break;
+                }
+
+            }
+        }
+
+        str2 += '</ul>'
+        //        console.log(str2);
+        document.getElementById("tracks").innerHTML = str2;
+
+        document.getElementById('download').addEventListener('click', function () {
+            var offScreen = document.querySelector('.myVibes_image'), value = offScreen.value;
+            offScreen.style.backgroundImage = 'url(/static/background.png)';
+            window.scrollTo(0, 0);
+            // Use clone with htm2canvas and delete clone
+            html2canvas(offScreen, {
+                useCORS: true, //By passing this option in function Cross origin images will be rendered properly in the downloaded version of the PDF
+                onrendered: function (canvas) {
+                    //your functions here
+                }
+            }).then((canvas) => {
+                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    window.open().document.write('<img src="' + canvas.toDataURL() + '" style="width: 90%;display: block;margin-left: auto;margin-right: auto;margin-top: 10%;" />');
+                }
+                else {
+                    var dataURL = canvas.toDataURL();
+                    console.log(dataURL);
+                    var link = document.createElement('a');
+                    link.download = 'spot_my_vibe.png';
+                    link.href = dataURL;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    delete link;
+
+                }
+            });
+
+            offScreen.style.backgroundImage = '';
+
+        });
+
+        document.getElementById('download2').addEventListener('click', function () {
+            var offScreen = document.querySelector('.stat_image'), value = offScreen.value;
+
+//            offScreen.style.backgroundColor = '#B34233';
+            offScreen.style.backgroundImage = 'url(/static/background.png)';
+            window.scrollTo(0, 0);
+            // Use clone with htm2canvas and delete clone
+            html2canvas(offScreen, {
+                useCORS: true, //By passing this option in function Cross origin images will be rendered properly in the downloaded version of the PDF
+                onrendered: function (canvas) {
+                    //your functions here
+                }
+            }).then((canvas) => {
+                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    window.open().document.write('<img src="' + canvas.toDataURL() + '" style="width: 90%;display: block;margin-left: auto;margin-right: auto;margin-top: 10%;" />');
+                }
+                else {
+                    var dataURL = canvas.toDataURL();
+                    console.log(dataURL);
+                    var link = document.createElement('a');
+                    link.download = 'spot_my_vibe_stats.png';
+                    link.href = dataURL;
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    delete link;
+
+                }
+            });
+
+            offScreen.style.backgroundImage = '';
+        });
+
+    </script>
+    <script>
+
+    </script>
+
+</body>
+
+</html>

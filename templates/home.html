@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel = "stylesheet"
+	type = "text/css"
+	href = "{{ url_for('static', filename='style.css')}}"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="/static/icon.png">
+	<!-- Web icons -->
+<!--	<link rel="apple-touch-icon" sizes="180x180" href="/static/favicon_package_v0/apple-touch-icon.png"> -->
+
+<!--	<link rel="shortcut icon" href="/static/favicon_package_v0/favicon.ico">-->
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+	<title>Vibeify</title>
+</head>
+
+<body>	
+	<!-- header -->
+	<!-- <div class="header-branding"> -->
+
+
+		<!-- middle -->
+		<div class="middle">
+			<div class="middle-container">
+				<div class="middle-items">
+					<h1 class="middle-text">vibeify.me</h1>
+
+					<div class="login-button">
+						<p><a id='login-link' href="{{ url_for('login') }}">Login</a></p>
+						<a href="{{ url_for('login') }}"><img src="/static/login-button2.png"></a>
+					</div> 
+				</div>
+			</div>
+		</div>
+
+		<footer>
+			<a style="font-family: Khmer Mn, Palatino; opacity: 0; animation-name: fadein;animation-delay: 1s;animation-duration: 1s;animation-fill-mode: forwards;" href="https://github.com/sameerd4">Created by Sameer Dandekar.</a>
+			
+		</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

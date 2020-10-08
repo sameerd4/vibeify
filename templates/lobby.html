@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Party Lobby</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='bruh2.css')}}" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<meta id="party_id" data-name="{{party_id}}">
+	<!-- Web icons -->
+	<link rel="icon" href="/static/icon.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/static/favicon_package_v0/apple-touch-icon.png">
+	<link rel="manifest" href="/static/favicon_package_v0/site.webmanifest">
+	<link rel="mask-icon" href="/static/favicon_package_v0/safari-pinned-tab.svg" color="#5bbad5">
+	<link rel="shortcut icon" href="/static/favicon_package_v0/favicon.ico">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="msapplication-config" content="/static/favicon_package_v0/browserconfig.xml">
+	<meta name="theme-color" content="#ffffff">
+</head>
+<script>
+	fetch('/get_party_members').then((response) => {
+		console.log(response);
+		response.json().then((data) => {
+			console.log(data);
+
+			var trHTML = '';
+			for (var i = 0; i < data.length; i++) {
+				var obj = data[i];
+				trHTML += '<tr><td>' + '<image id="profile-pic" src="' + data[i].image + '" />' + '</td><td>' + data[i].first_name + '</td></tr>';
+				console.log(obj.spotify_id);
+			}
+			console.log(trHTML);
+			document.getElementById('member_list').innerHTML = trHTML;
+			// $('#member_list').append(trHTML);
+		});
+	});
+	const interval = setInterval(function () {
+		console.log("bruh");
+		fetch('/get_party_members').then((response) => {
+			console.log(response);
+			response.json().then((data) => {
+				console.log(data);
+
+				var trHTML = '';
+				for (var i = 0; i < data.length; i++) {
+					var obj = data[i];
+					trHTML += '<tr><td>' + '<image id="profile-pic" src="' + data[i].image + '" />' + '</td><td>' + data[i].first_name + '</td></tr>';
+					console.log(obj.spotify_id);
+				}
+				console.log(trHTML);
+				document.getElementById('member_list').innerHTML = trHTML;
+				// $('#member_list').append(trHTML);
+			});
+		});
+	}, 3000);
+
+
+
+</script>
+<style>
+	#profile-pic {
+		height: 60px;
+		width: 60px;
+		border-radius: 30px;
+		margin-left: calc(50% - 30px);
+		margin-top: 10px;
+	}
+
+	table {
+		border: none;
+		border-collapse: separate;
+	}
+
+	td {
+		border: none;
+	}
+
+	table {
+		margin: 0 auto;
+		border: none;
+		border-collapse: separate;
+		border-spacing: 25px;
+	}
+
+	td {
+
+		font-family: Khmer Mn, Palatino;
+		position: relative;
+		font-size: 200%;
+		font-weight: 400px;
+		color: #fff305;
+		border: none;
+	}
+</style>
+
+<body>
+	<div id="container">
+		<header>
+		</header>
+		<div id="middle">
+			<div id="middle_text">
+				<h1>Your Party ID: <br></h1><br>
+				<h1 style="font-family: Helvetica;">{{ party_id }}</h1><br><br>
+				<h1>Guest List:</h1>
+				<ul>
+
+					<table id="member_list" border='1'>
+					</table>
+
+				</ul>
+				{% if host %}
+				<div class="buttons">
+					<div onclick="location.href='{{ url_for('start_party') }}';" id="button3">
+						<p id="button-text"><a href="{{ url_for('start_party') }}">Start Party</a></p>
+					</div>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+	<script src="/static/app.js"></script>
+</body>
+
+</html>

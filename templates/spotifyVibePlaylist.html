@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Vibes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bruh.css')}}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta id="party_id" data-name="{{party_id}}">
+    <!-- Web icons -->
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<style>
+    ul#menu li {
+        display: inline;
+    }
+
+    .middle_text {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    #scores {
+        text-align: center;
+        font-size: 65%;
+        margin-bottom: 20px;
+    }
+
+    .stats {
+        padding-top: 40px;
+        background-color: #B34233;
+        /*        background-image: url(/static/background5.png);*/
+        display: inline-block;
+    }
+
+    #member_list {
+        font-size: 50%;
+    }
+
+    #download {
+        margin: auto;
+        width: 200px;
+        padding: 10px;
+        display: block;
+        background-color: #751A33;
+        color: #FEDF05;
+        border-radius: 20px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        cursor: pointer;
+    }
+
+    #download2 {
+        margin: auto;
+        width: 200px;
+        padding: 10px;
+        display: block;
+        background-color: #751A33;
+        color: #FEDF05;
+        border-radius: 20px;
+        margin-top: 20px;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+
+    #try_again {
+        margin: auto;
+        width: 200px;
+        padding: 10px;
+        display: block;
+        background-color: #751A33;
+        color: #FEDF05;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+    h1 {
+        font-family: Helvetica;
+        font-size: 200%;
+        color: #FEDF05;
+    }
+
+    .middle_text h1 {
+        margin: 0 auto;
+        margin-top: 0%;
+        margin-left: 10%;
+    }
+
+    #profile-pic {
+        height: 60px;
+        width: 60px;
+        border-radius: 20px;
+        margin-left: calc(0%);
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+
+    #artist-pic {
+        height: 60px;
+        width: 60px;
+        border-radius: 20px;
+        margin-top: 0px;
+        margin: -5px;
+    }
+
+    #album-cover {
+        height: 60px;
+        width: 60px;
+        border-radius: 10px;
+        margin-left: calc(0%);
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    #tracks {
+        width: 300px;
+        font-size: 50%;
+        border-spacing: 1px;
+    }
+
+    table {
+        margin: 0 auto;
+        border: none;
+        border-collapse: separate;
+    }
+
+    td {
+        font-family: Helvetica;
+        position: relative;
+        font-size: 187%;
+        font-weight: 400px;
+        color: #FEDF05;
+        border: none;
+        width: 20%;
+    }
+
+    #track-details {
+/*        width: 50%*/
+    }
+
+    #cover-art {
+/*        width: 15%*/
+    }
+
+    #song-list {
+        width: 30%;
+        font-weight: bold;
+    }
+
+    #my-vibes {
+        width: 50%;
+    }
+
+    .column {
+        float: left;
+        width: 50%;
+        padding: 0px;
+        margin-top: 10px;
+        margin-left: 0%;
+    }
+
+    /* Clearfix (clear floats) */
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div id="middle">
+            <h1 id="title" style="margin-top: 40px;"></h1>
+            <div class="middle_text">
+                <ul style="margin-bottom: 5%;">
+                    <table id="tracks" border='1'>
+                    </table>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script type="text/javascript">
+        vibe = {{ vibe | safe }}
+        str = ''
+        switch (vibe) {
+            case "happy":
+                str += 'Happy &#128513;';
+                break;
+            case "sad":
+                str += 'Sad &#128532;';
+                break;
+            case "chill":
+                str += 'Chill &#128526;';
+                break;
+            case "hype":
+                str += 'Hype &#128548;';
+                break;
+            case "groovy":
+                str += 'Groovy &#128527;';
+                break;
+            case "angry":
+                str += 'Angry &#128545;';
+                break;
+            case "study":
+                str += 'Study &#128218;';
+                break;
+            case "workout":
+                str += 'Workout &#128170;';
+                break;
+            default:
+                break;
+        }
+
+        document.getElementById("title").innerHTML = str;
+
+
+        tracks = {{ playlist_tracks | safe }}
+
+        str2 = '<ul>';
+        for (var i = 0; i < tracks.length; i++) {
+            var val = tracks[i];
+            str2 += '<tr>'
+            str2 += '<td id="cover-art"><image id="album-cover" src="' + val[2] + '" /></td>'
+            str2 += '<td id="track-details"><table style="font-size:50%;"><tbody><tr><td style="font-weight: bold;">' + val[0] + '</td></tr><tr><td>' + val[1] + '</td></tr></tbody></table></td>'
+            str2 += '</tr>'
+
+        }
+
+        str2 += '</ul>'
+        //        console.log(str2);
+        document.getElementById("tracks").innerHTML = str2;
+    </script>
+    <script>
+
+    </script>
+</body>
+
+</html>
