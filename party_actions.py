@@ -35,18 +35,21 @@ def generate(host_token, guest_tokens, playlist_id):
     spotifyObject = spotipy.Spotify(auth=host_token)
     host_id = str(spotifyObject.current_user()['id'])
 
+    host_country = spotifyObject.me()['country']
+    print(country)
+
     # Collect collective top tracks and artists
 
     top_artists_list = [] # list of dictionaries of guests' top artists
     top_tracks_list = [] # list of dictionaries of guests' top tracks
 
     for guest_token in guest_tokens:
-        print(guest_token) # debugging
+#        print(guest_token) # debugging
         guest_object = spotipy.Spotify(auth=guest_token)
 
         # Guest follows the playlist
-        print(host_id, playlist_id)
-        guest_object.user_playlist_follow_playlist(host_id, playlist_id)
+#        print(host_id, playlist_id)
+#        guest_object.user_playlist_follow_playlist(host_id, playlist_id)
         
         ranges = {'short_term': 8, 'medium_term': 9, 'long_term': 10}
 
@@ -159,11 +162,11 @@ def generate(host_token, guest_tokens, playlist_id):
     seed_artists_ids = [i[1] for i in favorite_artist_candidates]
 
     # collect recommendations
-    recommended_tracks = spotifyObject.recommendations(seed_artists=seed_artists_ids[:5], limit=15)
+    recommended_tracks = spotifyObject.recommendations(country=host_country, seed_artists=seed_artists_ids[:5], limit=15)
     for track in recommended_tracks['tracks']:
         track_ids.append(track['id'])
     
-    recommended_tracks = spotifyObject.recommendations(seed_artists=seed_artists_ids[5:], limit=15)
+    recommended_tracks = spotifyObject.recommendations(country=host_country, seed_artists=seed_artists_ids[5:], limit=15)
     for track in recommended_tracks['tracks']:
         track_ids.append(track['id'])
 

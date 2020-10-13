@@ -18,7 +18,7 @@ client_id = os.environ.get("CLIENT_ID")
 client_secret = os.environ.get("CLIENT_SECRET")
 redirect_uri = os.environ.get('REDIRECT_URI')
 
-scope = 'user-top-read playlist-modify-public playlist-modify-private'
+scope = 'user-top-read playlist-modify-public playlist-modify-private user-read-private'
 
 
 def req_auth():
@@ -338,50 +338,52 @@ def getTracks(user_token, songSets):
 
 def getRecommendations(user_token, topArtistIDs, vibe, songList=[]):
     spotifyObject = spotipy.Spotify(auth=user_token)
+    host_country = spotifyObject.me()['country']
+    
     songSet = set(songList)
     if vibe == "happy":
-        happy_recommendations = spotifyObject.recommendations(seed_artists=list(topArtistIDs[:4]), seed_genres=['happy'], min_valence=0.75, min_energy=0.75, limit=20)['tracks']
-        happy_recommendations2 = spotifyObject.recommendations(seed_artists=list(topArtistIDs[4:8]), seed_genres=['happy'], min_valence=0.75, min_energy=0.75, limit=20)['tracks']
+        happy_recommendations = spotifyObject.recommendations(country=host_country, seed_artists=list(topArtistIDs[:4]), seed_genres=['happy'], min_valence=0.75, min_energy=0.75, limit=20)['tracks']
+        happy_recommendations2 = spotifyObject.recommendations(country=host_country, seed_artists=list(topArtistIDs[4:8]), seed_genres=['happy'], min_valence=0.75, min_energy=0.75, limit=20)['tracks']
 
         for i in range(10):
             if i < len(happy_recommendations): songSet.add(happy_recommendations[i]['id'])
             if i < len(happy_recommendations2): songSet.add(happy_recommendations2[i]['id'])
     
     elif vibe == "sad":
-        sad_recommendations = spotifyObject.recommendations(seed_artists=list(topArtistIDs[:4]), seed_genres=['sad'], max_valence=0.25, max_energy=0.4, limit=20)['tracks']
-        sad_recommendations2 = spotifyObject.recommendations(seed_artists=list(topArtistIDs[4:8]), seed_genres=['sad'], max_valence=0.25, max_energy=0.4, limit=20)['tracks']
+        sad_recommendations = spotifyObject.recommendations(country=host_country, seed_artists=list(topArtistIDs[:4]), seed_genres=['sad'], max_valence=0.25, max_energy=0.4, limit=20)['tracks']
+        sad_recommendations2 = spotifyObject.recommendations(country=host_country, seed_artists=list(topArtistIDs[4:8]), seed_genres=['sad'], max_valence=0.25, max_energy=0.4, limit=20)['tracks']
 
         for i in range(10):
             if i < len(sad_recommendations): songSet.add(sad_recommendations[i]['id'])
             if i < len(sad_recommendations2): songSet.add(sad_recommendations2[i]['id'])
 
     elif vibe == "hype":
-        sad_recommendations = spotifyObject.recommendations(seed_artists=list(topArtistIDs[:5]), min_energy=0.75, limit=10)['tracks']
-        sad_recommendations2 = spotifyObject.recommendations(seed_artists=list(topArtistIDs[5:10]), min_energy=0.75, limit=10)['tracks']
+        sad_recommendations = spotifyObject.recommendations(country=host_country, seed_artists=list(topArtistIDs[:5]), min_energy=0.75, limit=10)['tracks']
+        sad_recommendations2 = spotifyObject.recommendations(country=host_country, seed_artists=list(topArtistIDs[5:10]), min_energy=0.75, limit=10)['tracks']
 
         for i in range(10):
             if i < len(sad_recommendations): songSet.add(sad_recommendations[i]['id'])
             if i < len(sad_recommendations2): songSet.add(sad_recommendations2[i]['id'])
 
     elif vibe == "chill":
-        chill_recommendations = spotifyObject.recommendations(seed_artists=list(topArtistIDs[:4]), seed_genres=['chill'], max_energy=0.25, limit=20)['tracks']
-        chill_recommendations2 = spotifyObject.recommendations(seed_artists=list(topArtistIDs[4:8]), seed_genres=['chill'], max_energy=0.25, limit=20)['tracks']
+        chill_recommendations = spotifyObject.recommendations(country=host_country, seed_artists=list(topArtistIDs[:4]), seed_genres=['chill'], max_energy=0.25, limit=20)['tracks']
+        chill_recommendations2 = spotifyObject.recommendations(country=host_country, seed_artists=list(topArtistIDs[4:8]), seed_genres=['chill'], max_energy=0.25, limit=20)['tracks']
 
         for i in range(10):
             if i < len(chill_recommendations): songSet.add(chill_recommendations[i]['id'])
             if i < len(chill_recommendations2): songSet.add(chill_recommendations2[i]['id'])
 
     elif vibe == "groovy":
-        dance_recommendations = spotifyObject.recommendations(seed_artists=list(topArtistIDs[:5]), min_danceability=0.8, limit=20)['tracks']
-        dance_recommendations2 = spotifyObject.recommendations(seed_artists=list(topArtistIDs[5:10]), min_danceability=0.8, limit=20)['tracks']
+        dance_recommendations = spotifyObject.recommendations(country=host_country, seed_artists=list(topArtistIDs[:5]), min_danceability=0.8, limit=20)['tracks']
+        dance_recommendations2 = spotifyObject.recommendations(country=host_country, seed_artists=list(topArtistIDs[5:10]), min_danceability=0.8, limit=20)['tracks']
 
         for i in range(10):
             if i < len(dance_recommendations): songSet.add(dance_recommendations[i]['id'])
             if i < len(dance_recommendations2): songSet.add(dance_recommendations2[i]['id'])
 
     elif vibe == "angry":
-        angry_recommendations = spotifyObject.recommendations(seed_artists=list(topArtistIDs[:5]), max_valence=0.25, min_energy=0.75, limit=20)['tracks']
-        angry_recommendations2 = spotifyObject.recommendations(seed_artists=list(topArtistIDs[5:10]), max_valence=0.25, min_energy=0.75, limit=20)['tracks']
+        angry_recommendations = spotifyObject.recommendations(country=host_country, seed_artists=list(topArtistIDs[:5]), max_valence=0.25, min_energy=0.75, limit=20)['tracks']
+        angry_recommendations2 = spotifyObject.recommendations(country=host_country, seed_artists=list(topArtistIDs[5:10]), max_valence=0.25, min_energy=0.75, limit=20)['tracks']
 
         for i in range(10):
             if i < len(angry_recommendations): songSet.add(angry_recommendations[i]['id'])
@@ -389,8 +391,8 @@ def getRecommendations(user_token, topArtistIDs, vibe, songList=[]):
     
     elif vibe == "study":
         songSet = set()
-        study_recommendations = spotifyObject.recommendations(seed_artists=list(topArtistIDs[:4]), seed_genres=['study'], limit=20)['tracks']
-        study_recommendations2 = spotifyObject.recommendations(seed_artists=list(topArtistIDs[4:8]), seed_genres=['study'], limit=20)['tracks']
+        study_recommendations = spotifyObject.recommendations(country=host_country, seed_artists=list(topArtistIDs[:4]), seed_genres=['study'], limit=20)['tracks']
+        study_recommendations2 = spotifyObject.recommendations(country=host_country, seed_artists=list(topArtistIDs[4:8]), seed_genres=['study'], limit=20)['tracks']
     
         for i in range(20):
             if i < len(study_recommendations): songSet.add(study_recommendations[i]['id'])
@@ -398,8 +400,8 @@ def getRecommendations(user_token, topArtistIDs, vibe, songList=[]):
 
     elif vibe == "workout":
 #        songSet = set()
-        workout_recommendations = spotifyObject.recommendations(seed_tracks=songList[:4], seed_genres=['work-out'], min_energy=0.8, limit=20)['tracks']
-        workout_recommendations2 = spotifyObject.recommendations(seed_tracks=songList[4:8], seed_genres=['work-out'], min_energy=0.8, limit=20)['tracks']
+        workout_recommendations = spotifyObject.recommendations(country=host_country, seed_tracks=songList[:4], seed_genres=['work-out'], min_energy=0.8, limit=20)['tracks']
+        workout_recommendations2 = spotifyObject.recommendations(country=host_country, seed_tracks=songList[4:8], seed_genres=['work-out'], min_energy=0.8, limit=20)['tracks']
     
         for i in range(20):
             if i < len(workout_recommendations): songSet.add(workout_recommendations[i]['id'])
