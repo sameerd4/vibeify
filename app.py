@@ -181,12 +181,9 @@ def tryAgain():
 @app.route('/vibePlaylist/<vibe>')
 def vibePlaylist(vibe):
     if session.get('loginTime') and time.time() < session['loginTime'] + 1800 and session.get('token'):
-        vibeSetMap = {'happy': 0, 'sad': 1, 'hype': 2, 'chill': 3, 'groovy': 4, 'angry': 5, 'workout': 2}
+        vibeSetMap = {'happy': 0, 'sad': 1, 'hype': 2, 'chill': 3, 'groovy': 4, 'angry': 5, 'study': 0, 'workout': 2}
         song_ids = []
-        if vibe in vibeSetMap:
-            song_ids = getRecommendations(session['token'], session['artistIDs'], vibe, session['songSets'][vibeSetMap[vibe]])
-        else:
-            song_ids = getRecommendations(session['token'], session['artistIDs'], vibe)
+        song_ids = getRecommendations(session['token'], session['artistIDs'], vibe, session['songSets'][vibeSetMap[vibe]])
 
         ids = [track[3] for track in song_ids]
         playlist_id = createPlaylist(session['token'], ids, vibe)

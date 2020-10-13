@@ -97,9 +97,6 @@ def getVibes(user_token, tryAgain=False):
     medium_term_favorite_artist_items = spotifyObject.current_user_top_artists(limit=50, time_range="medium_term")['items']
     long_term_favorite_artist_items = spotifyObject.current_user_top_artists(limit=50, time_range="long_term")['items']
 
-    short_term_top_10_artists = []
-    medium_term_top_10_artists = []
-    long_term_top_10_artists = []
     artistIDSet = set()
     artistImageList = []
     
@@ -292,8 +289,6 @@ def getVibes(user_token, tryAgain=False):
             fav_mood_tracks['dance'] = (favorite_dance_track.name, favorite_dance_track.artists[0]['name'], favorite_dance_track.imageURL)
 
     songSets = [happySet, sadSet, hypeSet, chillSet, danceableSet, angrySet]
-
-    randomTracks = getTracks(user_token, songSets)
 
     end = time.time()
     print(end - start)     
