@@ -9,8 +9,8 @@
 
 
 body {
+    background-image: url(/static/background.png);
     background-color: #B34233;
-/*    background-image: url(/static/background5.png);*/
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -33,6 +33,76 @@ h1 {
     color: #FEDF05;
 }
 
+#profile-pic {
+    height: 60px;
+    width: 60px;
+    border-radius: 20px;
+    margin-left: calc(0%);
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+#artist-pic {
+    height: 60px;
+    width: 60px;
+    border-radius: 20px;
+    margin-top: 0px;
+}
+
+#album-cover {
+    height: 60px;
+    width: 60px;
+    border-radius: 10px;
+    margin-left: calc(0%);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#tracks {
+    font-size: 50%;
+    border-spacing: 1px;
+}
+
+table {
+    margin: 0 auto;
+    border: none;
+    border-collapse: separate;
+}
+
+td {
+    font-family: Khmer Mn, Palatino;
+    position: relative;
+    font-size: 187%;
+    font-weight: 400px;
+    color: #fff305;
+    border: none;
+    width: 20%;
+}
+
+#track-details {
+    width: 50%
+}
+
+#cover-art {
+    width: 15%
+}
+
+#song-list {
+    width: 30%;
+    font-weight: bold;
+}
+
+#my-vibes {
+    width: 50%;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 0px;
+    margin-top: 10px;
+    margin-left: 0%;
+}
 
 @keyframes fadein {
 

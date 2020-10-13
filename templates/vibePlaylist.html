@@ -13,83 +13,10 @@
     <meta name="theme-color" content="#ffffff">
 </head>
 <style>
-    #overlay {
-        top: 0;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        background-image: url('https://previews.123rf.com/images/siraphol/siraphol1510/siraphol151001023/45767209-old-dirty-concrete-textures-for-background-vintage-filter-effect.jpg');
-        opacity: .1;
-    }
-
-    body {
-        background-image: url(/static/background.png);
-    }
-    ul#menu li {
-        display: inline;
-    }
 
     .middle_text {
         padding-top: 40px;
         padding-bottom: 40px;
-    }
-
-    #scores {
-        text-align: center;
-        font-size: 65%;
-        margin-bottom: 20px;
-    }
-
-    .stats {
-        padding-top: 40px;
-        background-color: #B34233;
-        /*        background-image: url(/static/background5.png);*/
-        display: inline-block;
-    }
-
-    #member_list {
-        font-size: 50%;
-    }
-
-    #download {
-        margin: auto;
-        width: 200px;
-        padding: 10px;
-        display: block;
-        background-image: url(static/buttonBackground.png);
-/*        background-color: #751A33; */
-        color: #fff305;
-        border-radius: 20px;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        cursor: pointer;
-    }
-
-    #download2 {
-        margin: auto;
-        width: 200px;
-        padding: 10px;
-        display: block;
-        background-image: url(static/buttonBackground.png);
-/*        background-color: #751A33; */
-        color: #fff305;
-        border-radius: 20px;
-        margin-top: 20px;
-        cursor: pointer;
-        margin-bottom: 20px;
-    }
-
-    #try_again {
-        margin: auto;
-        width: 200px;
-        padding: 10px;
-        display: block;
-        background-image: url(static/buttonBackground.png);
-/*        background-color: #751A33; */
-        color: #fff305;
-        border-radius: 20px;
-        cursor: pointer;
     }
 
     h1 {
@@ -104,44 +31,6 @@
         margin-left: 10%;
     }
 
-    #profile-pic {
-        height: 60px;
-        width: 60px;
-        border-radius: 20px;
-        margin-left: calc(0%);
-        margin-top: 0px;
-        margin-bottom: 10px;
-    }
-
-    #artist-pic {
-        height: 60px;
-        width: 60px;
-        border-radius: 20px;
-        margin-top: 0px;
-        margin: -5px;
-    }
-
-    #album-cover {
-        height: 60px;
-        width: 60px;
-        border-radius: 10px;
-        margin-left: calc(0%);
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    #tracks {
-        width: 300px;
-        font-size: 50%;
-        border-spacing: 1px;
-    }
-
-    table {
-        margin: 0 auto;
-        border: none;
-        border-collapse: separate;
-    }
-
     td {
         font-family: Helvetica;
         position: relative;
@@ -152,38 +41,6 @@
         width: 20%;
     }
 
-    #track-details {
-        /*        width: 50%*/
-    }
-
-    #cover-art {
-        /*        width: 15%*/
-    }
-
-    #song-list {
-        width: 30%;
-        font-weight: bold;
-    }
-
-    #my-vibes {
-        width: 50%;
-    }
-
-    .column {
-        float: left;
-        width: 50%;
-        padding: 0px;
-        margin-top: 10px;
-        margin-left: 0%;
-    }
-
-    /* Clearfix (clear floats) */
-    .row::after {
-        content: "";
-        clear: both;
-        display: table;
-    }
-
     #playlist_buttons {
         font-family: Helvetica;
         margin: auto;
@@ -191,7 +48,6 @@
         padding: 10px;
         display: block;
         background-image: url(static/buttonBackground.png);
-/*        background-color: #751A33; */
         color: #fff305;
         border-radius: 20px;
         cursor: pointer;
@@ -234,24 +90,13 @@
                     <div class="column2"> <button
                             onclick="location.href='{{ url_for('deletePlaylist', playlist_id=playlist_id, vibe=vibe) }}';"
                             class="btn" id="playlist_buttons">Delete and Try Again</button></div>
-
                 </div>
                 <iframe src="https://open.spotify.com/embed/playlist/{{playlist_id}}" width="350" height="600"
                     frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-
-                <!--                <ul style="margin-bottom: 5%;">
-                    <table id="tracks" border='1'>
-                    </table>
-                </ul>-->
             </div>
         </div>
     </div>
 
-    <script type="text/javascript">
-    </script>
-    <script>
-
-    </script>
 </body>
 
 </html>

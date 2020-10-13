@@ -1,9 +1,9 @@
 import json
 import os
 import os.path
+import time
 from os import path
 
-from flask_sslify import SSLify
 from flask import (Flask, jsonify, redirect, render_template, request, session,
                    url_for)
 from flask_sqlalchemy import SQLAlchemy
@@ -17,20 +17,11 @@ from party_actions import (create_party_playlist, generate,
 from spotify_actions import (createPlaylist, getRecommendations, getTracks,
                              getVibes, req_auth, req_token, unfollow_playlist)
 
-import time
 '''
 App Config
 '''
 
 app = Flask(__name__)
-# sslify = SSLify(app)
-'''
-if __name__ == '__main__':
-    key = os.path.abspath('key.pem')
-    cert = os.path.abspath('cert.pem')
-    print(key, cert)
-    app.run(host='0.0.0.0', ssl_context=(cert, key))
-'''
 app.secret_key = os.environ.get('SESSION_SECRET')
 app.wsgi_app = WhiteNoise(app.wsgi_app, root='static/')
 
@@ -178,8 +169,9 @@ def tryAgain():
         return redirect(url_for('home'))
 
 
-@app.route('/vibePlaylist/<vibe>')
-def vibePlaylist(vibe):
+@app.route('/vibePlaylist')
+def vibePlaylist():
+    vibe = request.args.get('vibe')
     if session.get('loginTime') and time.time() < session['loginTime'] + 1800 and session.get('token'):
         vibeSetMap = {'happy': 0, 'sad': 1, 'hype': 2, 'chill': 3, 'groovy': 4, 'angry': 5, 'study': 0, 'workout': 2}
         song_ids = []
@@ -266,7 +258,10 @@ def create_party():
         # Generate random 4-digit party ID
         # TO DO: check that it's unique in the database
         import random
+        active_party_ids = get_parties()
         party_id = random.randint(1000,9999)
+        while party_id in active_party_ids:
+            party_id = random.randint(1000,9999)
 
         # Store party ID in session
         session['party_id'] = party_id
@@ -358,8 +353,8 @@ def join_party():
         if request.method == 'POST':
 
             # TO DO: get custom playlist name and description from jquery post request
-            pl_name = session.get('pl_name')
-            pl_desc = session.get('pl_desc')
+            #pl_name = session.get('pl_name')
+            #pl_desc = session.get('pl_desc')
 
             # Store party ID in session
             party_id = int(float(request.form.get('party_code')))
