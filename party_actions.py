@@ -36,7 +36,6 @@ def generate(host_token, guest_tokens, playlist_id):
     host_id = str(spotifyObject.current_user()['id'])
 
     host_country = spotifyObject.me()['country']
-    print(country)
 
     # Collect collective top tracks and artists
 
