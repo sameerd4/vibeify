@@ -35,7 +35,7 @@ def generate(host_token, guest_tokens, playlist_id):
     spotifyObject = spotipy.Spotify(auth=host_token)
     host_id = str(spotifyObject.current_user()['id'])
 
-    host_country = spotifyObject.me()['country']
+#    host_country = spotifyObject.me()['country']
 
     # Collect collective top tracks and artists
 
@@ -93,7 +93,7 @@ def generate(host_token, guest_tokens, playlist_id):
             if group_favorite_tracks_counter[track] >= (len(guest_tokens) // 2):
                 common_tracks.add(track)
 
-    print(len(favorite_track_candidates))
+#    print(len(favorite_track_candidates))
     if len(common_tracks) < 20:
         diff = 20 - len(common_tracks)
         num_tracks_to_get_from_guest = diff // len(guest_tokens)
@@ -133,7 +133,7 @@ def generate(host_token, guest_tokens, playlist_id):
             if group_favorite_artists_counter[artist] >= (len(guest_tokens) // 2):
                 common_artists.add(artist)
 
-    print(len(common_artists))
+#    print(len(common_artists))
     if len(common_artists) < 10:
         diff = 10 - len(common_artists)
         num_artists_to_get_from_guest = diff // len(guest_tokens)
@@ -161,11 +161,11 @@ def generate(host_token, guest_tokens, playlist_id):
     seed_artists_ids = [i[1] for i in favorite_artist_candidates]
 
     # collect recommendations
-    recommended_tracks = spotifyObject.recommendations(country=host_country, seed_artists=seed_artists_ids[:5], limit=15)
+    recommended_tracks = spotifyObject.recommendations(country='US', seed_artists=seed_artists_ids[:5], limit=15)
     for track in recommended_tracks['tracks']:
         track_ids.append(track['id'])
     
-    recommended_tracks = spotifyObject.recommendations(country=host_country, seed_artists=seed_artists_ids[5:], limit=15)
+    recommended_tracks = spotifyObject.recommendations(country='US', seed_artists=seed_artists_ids[5:], limit=15)
     for track in recommended_tracks['tracks']:
         track_ids.append(track['id'])
 
@@ -195,3 +195,8 @@ def get_playlist_length(token, playlist_id):
     spotifyObject = spotipy.Spotify(auth=token)
     playlist = spotifyObject.playlist_tracks(playlist_id)
     return playlist['total']
+
+def follow_playlist(token, playlist_id):
+    spotifyObject = spotipy.Spotify(auth=token)
+    owner_id = spotifyObject.playlist(playlist_id)['owner']['id']
+    return spotifyObject.user_playlist_follow_playlist(owner_id, playlist_id)

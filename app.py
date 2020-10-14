@@ -13,7 +13,7 @@ from sqlalchemy.sql import text
 from whitenoise import WhiteNoise
 
 from party_actions import (create_party_playlist, generate,
-                           get_playlist_length, get_user)
+                           get_playlist_length, get_user, follow_playlist)
 from spotify_actions import (createPlaylist, getRecommendations, getTracks,
                              getVibes, req_auth, req_token, unfollow_playlist)
 
@@ -335,6 +335,16 @@ def start_party():
     else:
         return redirect(url_for('login'))
 
+@app.route('/save_party', methods=['GET', 'POST'])
+def save_party():
+    if session.get('loginTime') and time.time() < session['loginTime'] + 1800 and session.get('token'):
+        party_playlist_id = request.args.get('playlist_id')
+        follow_playlist(session['token'], party_playlist_id)
+
+        return render_template('party.html', playlist_id=session['party_playlist_id'], party_id=session['party_id'], party_members = get_members(session['party_id']))
+
+    else:
+        return redirect(url_for('login'))      
 
 @app.route('/join_party', methods=['GET', 'POST'])
 def join_party():
