@@ -43,7 +43,6 @@ def generate(host_token, guest_tokens, playlist_id):
     top_tracks_list = [] # list of dictionaries of guests' top tracks
 
     for guest_token in guest_tokens:
-#        print(guest_token) # debugging
         guest_object = spotipy.Spotify(auth=guest_token)
 
         # Guest follows the playlist
@@ -121,7 +120,6 @@ def generate(host_token, guest_tokens, playlist_id):
     # favorite_track_candidates should have 20 tracks at this point, either all common tracks, 
     # a mix of common tracks and individual favorites, or all individual favorites
 
-    print(favorite_track_candidates)
     track_ids = []
     favorite_artist_candidates = set()
     common_artists = set()

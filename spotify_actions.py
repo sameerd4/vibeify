@@ -100,8 +100,8 @@ def getVibes(user_token, tryAgain=False):
     artistIDSet = set()
     artistImageList = []
     
-    print(user_token)
-    print(len(short_term_favorite_artist_items))
+#    print(user_token)
+#    print(len(short_term_favorite_artist_items))
     for i in range(20):
         if i < len(short_term_favorite_artist_items):
             if short_term_favorite_artist_items[i]['id'] not in artistIDSet:
@@ -291,7 +291,7 @@ def getVibes(user_token, tryAgain=False):
     songSets = [happySet, sadSet, hypeSet, chillSet, danceableSet, angrySet]
 
     end = time.time()
-    print(end - start)     
+#    print(end - start)     
     return [scores, fav_mood_tracks, profile_image, songSets, artistImageList[:10], artistIDList]
 
 def getTracks(user_token, songSets):

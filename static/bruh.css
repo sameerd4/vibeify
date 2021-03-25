@@ -104,6 +104,17 @@ td {
     margin-left: 0%;
 }
 
+#button1, #button2 {
+    font-family: Khmer Mn, Palatino;
+    background-image: url(/static/blackButtonBackground.png);
+    height: 50px;
+    width: 120px;
+    border-radius: 2rem;
+    line-height: 50px;
+    opacity: 1;
+    cursor: pointer;
+}
+
 @keyframes fadein {
 
 
@@ -256,27 +267,6 @@ header {
     margin: 0 auto;	
     width: 50vh;
 }
-
-#button1, #button2 {
-    background-color: #292929;
-    margin: 0 auto;
-    height: 50px;
-    width: 150px;
-    border-radius: 2rem;
-    line-height: 50px;
-    opacity: 1;
-
-/*position: relative;
-top: 30px;*/
-
-opacity: 0;
-animation-name: fadein;
-animation-delay: 0.5s;
-animation-duration: 2s;
-animation-fill-mode: forwards;
-}
-
-
 
 .middle_text {
 /* background-color: #B34233; */
